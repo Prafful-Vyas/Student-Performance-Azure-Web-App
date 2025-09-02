@@ -1,11 +1,12 @@
-## End to End MAchine Learning Project
-
-
+# End to End Azure Machine Learning Project
 
 ## Run from terminal:
 
-docker build -t testdockerkrish.azurecr.io/mltest:latest .
+Build the docker image
+`docker build -t pvreg.azurecr.io/student_performance:latest .`
 
-docker login testdockerkrish.azurecr.io
+Login into your container registry
+`docker login pvreg.azurecr.io`
 
-docker push testdockerkrish.azurecr.io/mltest:latest
+push the image into the container registry
+`docker push pvreg.azurecr.io/student_performance:latest`
