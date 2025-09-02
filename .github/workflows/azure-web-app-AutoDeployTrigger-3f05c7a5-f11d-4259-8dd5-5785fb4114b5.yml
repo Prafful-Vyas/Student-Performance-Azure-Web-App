@@ -1,0 +1,49 @@
+name: Trigger auto deployment for azure-web-app
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/azure-web-app-AutoDeployTrigger-3f05c7a5-f11d-4259-8dd5-5785fb4114b5.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREWEBAPP_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZUREWEBAPP_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZUREWEBAPP_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          _dockerfilePathKey_: _dockerfilePath_
+          _targetLabelKey_: _targetLabel_
+          registryUrl: pvreg.azurecr.io
+          registryUsername: ${{ secrets.AZUREWEBAPP_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.AZUREWEBAPP_REGISTRY_PASSWORD }}
+          containerAppName: azure-web-app
+          resourceGroup: Resource_group_1
+          imageToBuild: pvreg.azurecr.io/azure-web-app:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
