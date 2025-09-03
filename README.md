@@ -1,5 +1,3 @@
----
-
 # 🎓 Student Performance Prediction – Azure Web App Deployment
 
 This project is a production-grade machine learning web application that predicts student performance using a CatBoost model. The app is containerized with Docker and deployed to Azure using GitHub Actions and Azure Container Apps.
