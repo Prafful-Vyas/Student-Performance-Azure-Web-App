@@ -1,5 +1,3 @@
-Absolutely, Prafful! Here's a clean, professional README tailored for your project, ideal for GitHub and portfolio visibility:
-
 ---
 
 # 🎓 Student Performance Prediction – Azure Web App Deployment
