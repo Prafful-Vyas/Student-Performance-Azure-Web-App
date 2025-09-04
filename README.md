@@ -1,7 +1,3 @@
-Absolutely, Prafful! Here's a clean, professional README tailored for your project, ideal for GitHub and portfolio visibility:
-
----
-
 # 🎓 Student Performance Prediction – Azure Web App Deployment
 
 This project is a production-grade machine learning web application that predicts student performance using a CatBoost model. The app is containerized with Docker and deployed to Azure using GitHub Actions and Azure Container Apps.
